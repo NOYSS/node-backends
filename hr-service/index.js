@@ -32,7 +32,7 @@ app.use(cors());
 app.use(express.static(path.join(__dirname)));
 // Base route
 app.get('/', (req,res) => {
-res.sendFile(path.join(__dirname, 'dist/index.html'))
+res.sendFile(path.join(__dirname, 'dists/index.html'))
 })
 // API Root
 app.use('/api', userRoute);
