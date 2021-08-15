@@ -1,0 +1,36 @@
+version: "3"
+
+networks: 
+    dev_network:
+
+services:
+  nginx:
+    build: 
+      context: ./nginx
+    image: nginxx:latest
+    container_name: nginx_proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    networks: 
+      - dev_network
+      
+  mongodb:
+    image: mongo:latest 
+    container_name: mongo_db
+    ports: 
+      - "27017:27017"
+    networks: 
+      - dev_network
+
+  hr-service:
+    build: .
+    image: hr_service:latest 
+    container_name: node_hrservice
+    environment: 
+      MONGO_HOST: mongo_db
+      MONGO_PORT: 27017
+    ports: 
+      - "8000:8000"
+    networks: 
+      - dev_network
