@@ -2,7 +2,7 @@ const SHA256 = require("crypto-js/sha256");
 class CryptoBlock {
   constructor(index, timestamp, data, precedingHash = " ") {
     this.index = index;
-    this.timestamp = timestamp;
+    this.createDate = timestamp;
     this.data = data;
     this.precedingHash = precedingHash;
     this.hash = this.computeHash();
@@ -13,7 +13,7 @@ class CryptoBlock {
     return SHA256(
       this.index +
         this.precedingHash +
-        this.timestamp +
+        this.createDate +
         JSON.stringify(this.data) +
         this.nonce
     ).toString();

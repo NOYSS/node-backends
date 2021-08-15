@@ -1,0 +1,8 @@
+version: "3"
+
+services: 
+  blockchain:
+    build: .
+    container_name: node_blockchain
+    ports: 
+      - "8080:8080"
